@@ -1,27 +1,31 @@
 <script setup lang="ts">
-import { useSeoMeta } from 'nuxt/app';
-import { getIntlayer } from 'intlayer';
-import { useIntlayer, useLocale } from 'vue-intlayer';
-import HelloWorld from '~/components/helloWorld/HelloWorld.vue';
-import LocaleSwitcher from '~/components/LocaleSwitcher.vue';
+import { useSeoMeta } from "nuxt/app";
+import { getIntlayer } from "intlayer";
+import { useIntlayer, useLocale } from "vue-intlayer";
+import HelloWorld from "~/components/helloWorld/HelloWorld.vue";
+import LocaleSwitcher from "~/components/LocaleSwitcher.vue";
 
-const { nuxtLogo, intlayerLogo, title } = useIntlayer('root');
+const { nuxtLogo, intlayerLogo, title } = useIntlayer("root");
 
 const { locale } = useLocale();
-const meta = getIntlayer('root-meta', locale.value);
+const meta = getIntlayer("root-meta", locale.value);
 useSeoMeta(meta);
 </script>
 
 <template>
   <div>
     <a href="https://nuxt.com" target="_blank">
-      <img :src="`/nuxt.svg`" class="logo" :alt="nuxtLogo" />
+      <img :src="`/nuxt.svg`" class="logo" :alt="nuxtLogo.value" />
     </a>
     <a href="https://intlayer.org/" target="_blank">
-      <img :src="`/intlayer.svg`" class="logo intlayer" :alt="intlayerLogo" />
+      <img
+        :src="`/intlayer.svg`"
+        class="logo intlayer"
+        :alt="intlayerLogo.value"
+      />
     </a>
   </div>
-  <HelloWorld :msg="title" />
+  <HelloWorld :msg="title.value" />
   <LocaleSwitcher />
 </template>
 
